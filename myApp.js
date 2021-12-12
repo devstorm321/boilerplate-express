@@ -2,6 +2,7 @@ require('dotenv').config();
 
 
 var express = require('express');
+const res = require('express/lib/response');
 var app = express();
 
 app.use("/public", express.static(__dirname + "/public"));
@@ -32,6 +33,11 @@ app.get('/now', function (req, res, next) {
     });
 })
 
+app.get('/:word/echo', function(req, rest){
+    res.json({
+        echo: req.params.word
+    });
+})
 
 
 
