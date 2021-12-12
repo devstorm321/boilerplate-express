@@ -6,7 +6,7 @@ var app = express();
 
 app.use("/public", express.static(__dirname + "/public"));
 
-app.use(function(req,res,next){
+app.use(function (req, res, next) {
     console.log(req.method + " " + req.path + " - " + req.ip);
     next();
 })
@@ -23,7 +23,14 @@ app.get('/json', function (req, res) {
     }
 })
 
-
+app.get('/now', function (req, res, next) {
+    req.time = new Date().toString();
+    next()
+}, function (req, res) {
+    res.json({
+        "time": req.time
+    });
+})
 
 
 
